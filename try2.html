@@ -1,0 +1,95 @@
+﻿{% load staticfiles %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>good morning!!</title>
+        <style>
+            body {
+               background-color: gold;
+            }
+            em {
+                color: LightSeaGreen;
+            }
+        </style>
+    </head>
+    <body background="https://images.pottermore.com/bxd3o8b291gf/2phT56DSucuUqU6Icm6mCe/b1fd2811691e41ffd1622a07eb528604/HogwartsCastle_WB_F4_HogwartsThroughTheTrees_Illust_100615_Land.jpg?w=1200">
+       <div class="header">
+           <h1 class="site-title text-center">
+               <center><em><a href="/"><font color="silver">~歌詞推薦系統~</font></a></em></center>
+           </h1>
+       </div>
+       <div class="container">
+       <!--<font color="white><h1></font></h1>-->
+       <!--    <strong><font size="4" color="purple">it's such a good day</font></strong>-->
+           <br>
+        <!--<font face="wingdings"  color="silver">ABCDEFGHIJK</font>
+        <font color="silver">ABCDEFGHIJK</font>-->
+           <br>
+           <form action="/go" method="post">
+               {% csrf_token %}
+               <font  color="silver">請輸入你的心情 :</font>
+               <br>
+               <textarea cols=60 rows=6 name="text"></textarea>
+               <br>
+               <input type="submit" name="SB" value="確定">
+           </form>
+
+           <p style="color:white;">{{ num }}</p>
+           <br>
+           <p style=" color:white; charset=utf-8 ">{{ rlt | linebreaksbr }}</p>
+           <br>
+           <em>{{ current_time }}</em>
+           <br>
+           <br>
+       </div>
+
+
+       <font  color="silver"><strong>Test Google Form</strong></font>
+       <script>
+           function postToGoogle() {
+                var field1 = $("input[type='radio'][name='qs1']:checked").val();
+                var field2 = $('#feed').val();
+
+   $.ajax({
+     url: "https://docs.google.com/forms/d/e/1FAIpQLScu_Mv5ZzDvC0J4AZhhOJc5yrp6AqWuHP313VuDseL6nR1OwQ/viewform",
+     data: {
+       "entry.924752166": field1,
+       "entry.997497831": field2
+     },
+     type: "POST",
+     dataType: "xml",
+     statusCode: {
+       0: function() {
+         //Success message
+       },
+       200: function() {
+         //Success Message
+       }
+     }
+   });
+ }
+       </script>
+
+       <form id="form" target="_self" onsubmit="" action="#">
+           <fieldset>
+               <font  color="silver"><label>Question 1</label></font>
+               <input id="qs1_op_1" type="radio" value="Yes" name="qs1" />
+               <input id="qs1_op_2" type="radio" value="No" name="qs1" />
+           </fieldset>
+           <fieldset>
+               <font  color="silver"><label>Text</label></font>
+               <textarea id="feed" name="feed"></textarea>
+           </fieldset>
+           <div style="width: 100%; display: block; float: right;">
+               <button id="send" type="submit" onclick="postToGoogle()">Send</button>
+           </div>
+       </form>
+       <br /><br />
+       <font color="silver"> The <a href="https://docs.google.com/spreadsheets/d/1C062n10t7EpA7wvga1O9QAJTZJPCW3ewG3FvKTZAIS8/edit#gid=200662679">Result</a>
+           takes few minutes to be shown, but it is sent to the google sheet instantaneously.</font>
+       <br /><br />
+
+    </body>
+</html>
+
